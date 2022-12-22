@@ -1,20 +1,17 @@
 import CollectionSection from "../components/CollectionSection";
 import Footer from "../components/common/Footer";
-import GalleryHero from "../components/gallery/GalleryHero";
 import Header from "../components/Header";
-import Achievement from "../components/home/Achievement";
-import Articles from "../components/home/Articles";
-import OurStory from "../components/home/OurStory";
-import TopItemsSection from "../components/home/TopItemsSection";
+import Hero from "../components/Hero";
 import Newsletter from "../components/Newsletter";
+import TestionialSlider from "../components/TestimonialSlider";
 
 export default function Gallery() {
     return (
         <>
         <Header />
-        <GalleryHero />
+        <Hero title="Our Gallery, Your Dreams!" />
         <CollectionSection />
-        <Achievement />
+        <TestionialSlider />
         <Newsletter />
         <Footer />
         </>

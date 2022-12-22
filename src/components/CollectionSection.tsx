@@ -14,6 +14,8 @@ export default function CollectionSection() {
     }
 
     const [allProducts, setAllProducts] = useState<ProductDetails[]>([]);
+    const [loading, setLoading] = useState<Boolean>(true);
+
     const [productsLength, setProductsLength] = useState<number>(6)
 
     useEffect(() => {
@@ -21,7 +23,7 @@ export default function CollectionSection() {
             try {
                 const response = await getAllProduct();
                 setAllProducts(response);
-                console.log(response);
+                setLoading(false);
             } catch(e) {
                 console.error(e);
             }
@@ -44,6 +46,7 @@ export default function CollectionSection() {
                 </ul>
             </div>
 
+            { loading ? <h1 className='text-[3rem] text-red-500'>Loading...</h1> : null }
             <div className='flex justify-between flex-wrap [&>*]:m-2'>
                 { allProducts && allProducts.slice(0,productsLength).map((product) => (
                     <Card key={product.id} info={product} />

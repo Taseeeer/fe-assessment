@@ -5,16 +5,14 @@ import Hero from "../components/Hero";
 import Achievement from "../components/home/Achievement";
 import Articles from "../components/home/Articles";
 import OurStory from "../components/home/OurStory";
-import TopItemsSection from "../components/home/TopItemsSection";
 import Newsletter from "../components/Newsletter";
 
 export default function Home() {
     return (
         <>
         <Header />
-        <Hero />
+        <Hero title="Your Premium Sound, Unplugged!" />
         <CollectionSection />
-        <TopItemsSection />
         <OurStory />
         <Achievement />
         <Articles /> 

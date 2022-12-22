@@ -16,9 +16,12 @@ export default function Main() {
     }
 
     const [allProducts, setAllProducts] = useState<ProductDetails[]>([]);
+    const [loading, setLoading] = useState<Boolean>(true);
+
     const [productsLength, setProductsLength] = useState<number>(6);
 
     const [searchProduct, setSearchProduct] = useState<string>("");
+
     const [ rangeValue, setRangeValue ] = useState<number | string>(2);
 
     useEffect(() => {
@@ -26,7 +29,7 @@ export default function Main() {
             try {
                 const response = await getAllProduct();
                 setAllProducts(response);
-                console.log(response);
+                setLoading(false);
             } catch(e) {
                 console.error(e);
             }
@@ -117,6 +120,7 @@ export default function Main() {
                 </div>
 
                 {/* right */}
+                { loading ? <h1 className='text-[3rem] text-red-500'>Loading...</h1> : null }
                 <div className='bg-gray-100 basis-full px-8 py-2'>
                     <div className='flex flex-wrap gap-4 justify-between'>
                         { allProducts && allProducts.slice(0,productsLength)

@@ -1,15 +1,15 @@
+import CartView from "../components/cart/CartView";
 import Footer from "../components/common/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Newsletter from "../components/Newsletter";
-import Main from "../components/shop/Main";
 
-export default function Shop() {
+export default function Cart() {
     return (
         <>
         <Header />
-        <Hero title="Home Shopping, Your Choice!" />
-        <Main />
+        <Hero title="Our Gallery, Your Dreams!" />
+        <CartView />
         <Newsletter />
         <Footer />
         </>

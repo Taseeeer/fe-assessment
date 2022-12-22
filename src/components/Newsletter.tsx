@@ -8,7 +8,7 @@ export default function Newsletter() {
                 <p className='text-gray-500 pt-4 pb-8'>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster </p>
 
                 <div className='flex items-center bg-white rounded px-4 bg-gray-100'>
-                    <input className='p-4 w-[35rem] bg-gray-100 rounded' placeholder='Search what you need' />
+                    <input className='p-4 w-[35rem] bg-gray-100 rounded outline-0' placeholder='Search what you need' />
                     <button className='text-4xl text-white rounded-full bg-primaryColor'> <BiRightArrowCircle /> </button>
                 </div>
             </div>
