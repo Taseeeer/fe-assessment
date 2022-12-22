@@ -6,35 +6,9 @@ import { getProduct } from '../../api/productServices';
 import Jacket from '../../assets/bomber.webp';
 
 export default function Main() {
-    type ProductDetails = {
-        id: number,
-        description: string,
-        image: string,
-        price: number,
-        title: string
-    }
-
+    
     const [value, setValue] = useState<number | null>(5);
     const [quantity, setQuantity] = useState<number>(0);
-
-    // const [product, setProduct] = useState<{title: string; price: number, description: string, image: string}>({ title: '', description: '', price: 0, image: ''});
-    const [data, setData] = useState<any>(null);
-    const [loading, setLoading] = useState<Boolean>(true);
-
-    const { id } = useParams();
-
-    useEffect(() => {
-        (async () => {
-            try {
-                const response = await getProduct(3);
-                setData(response);
-                setLoading(false);
-                console.log(data)
-            } catch(e) {
-                console.error(e);
-            }
-        })();
-    }, [id]);
 
     return (
         <section className='px-[3.5rem] py-8'>
@@ -54,7 +28,7 @@ export default function Main() {
                 </div>
 
                 <div className='flex flex-col [&>*]:py-2 flex-wrap basis-6/12'>
-                    {/* <h1 className='text-[62px]'>{ product }</h1> */}
+                    <h1 className='text-[62px]'>Bomber Jacket</h1>
                     <Rating
                     name="simple-controlled"
                     value={value}
