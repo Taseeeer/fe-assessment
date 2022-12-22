@@ -1,5 +1,5 @@
 type ButtonProps = {
-    text: String
+    text: string
 }
 
 export default function Button({ text }: ButtonProps) {

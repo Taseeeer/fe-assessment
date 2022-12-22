@@ -2,7 +2,7 @@ import { Rating } from "@mui/material";
 import { useState } from "react";
 import { BiHeart } from "react-icons/bi";
 
-export default function ShopCard() {
+export default function ShopCard({ info }: any) {
     const [value, setValue] = useState<number | null>(5);
 
     return (
@@ -12,17 +12,17 @@ export default function ShopCard() {
             </div>
 
             <div className='flex flex-col items-center'>
-                <div className='h-[180px] w-[180px]'></div>
-                <h1 className='text-[24px]'>Urbano Jacket</h1>
+                <img src={info.image} alt="Product" className='h-[180px] w-[180px]' />
+                <h1 className='text-[24px]'>{info.title.slice(0,15) + "..."}</h1>
                 <Rating
                 name="simple-controlled"
-                value={value}
+                value={info.rating.rate}
                 onChange={(event, newValue) => {
                     setValue(newValue);
                 }}
                 />
-                <span className='text-gray-300'>watchmenow</span>
-                <span className='text-primaryColor'>$99</span>
+                <span className='text-gray-300'>{ info.category }</span>
+                <span className='text-primaryColor'>${ info.price }</span>
             </div>
         </div>
     )

@@ -1,7 +1,33 @@
+import { Key, useEffect, useState } from "react";
+import { getAllProduct } from "../api/productServices";
 import Button from "./Button";
 import Card from "./Card";
 
 export default function CollectionSection() {
+
+    type ProductDetails = {
+        id: number,
+        description: string,
+        image: string,
+        price: number,
+        title: string
+    }
+
+    const [allProducts, setAllProducts] = useState<ProductDetails[]>([]);
+    const [productsLength, setProductsLength] = useState<number>(6)
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await getAllProduct();
+                setAllProducts(response);
+                console.log(response);
+            } catch(e) {
+                console.error(e);
+            }
+        })();
+    }, []);
+
     return (
         <section className='bg-gray-100 py-20 px-[3.5rem]'>
 
@@ -19,16 +45,14 @@ export default function CollectionSection() {
             </div>
 
             <div className='flex justify-between flex-wrap [&>*]:m-2'>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                { allProducts && allProducts.slice(0,productsLength).map((product) => (
+                    <Card key={product.id} info={product} />
+                ))}
             </div>
 
             <div className='flex justify-center py-8'>
-                <Button text='Find out More' />
+                <button className='bg-primaryColor text-white px-4 py-3 mt-4 rounded' 
+                onClick={() => setProductsLength((prevState: number) => prevState + 3)}>Find out More</button>
             </div>
         </section>
     )

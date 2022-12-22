@@ -21,7 +21,7 @@ export default function Header() {
                 </ul>
                 
                 <div className='flex items-center bg-white rounded px-4'>
-                    <input className='p-4 w-[35rem]' placeholder='Search what you need' />
+                    <input className='p-4 w-[35rem] outline-0' placeholder='Search what you need' />
                     <BiSearch className='text-2xl cursor-pointer' />
                 </div>
 

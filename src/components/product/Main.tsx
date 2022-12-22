@@ -69,6 +69,70 @@ export default function Main() {
                         </span>
                     </div>
                 </div>
+
+
+                <div className='py-5 pt-20'>
+                    <h1 className='text-[3rem]'>Description</h1>
+
+                    <div className='flex'>
+                    {/* right */}
+                    <div className='basis-6/12'>
+                        <div className='py-4'>
+                            <span className='text-gray-500'>
+                                Develop a website by finding a product identity that has value and branding to become a characteristic of a company. We will also facilitate the business marketing of these products with our SEO experts so that they become a ready-to-use website and help sell a product from the company.
+                            </span>
+                            <span className='text-gray-500'>
+                                Develop a website by finding a product identity that has value and branding to become a characteristic of a company. We will also facilitate the business marketing of these products with our SEO experts so that they become a ready-to-use website and help sell a product from the company.
+                            </span>
+                        </div>
+
+
+                        <h1 className='text-[3rem] py-8'>Reviews(2)</h1>
+                        <div>
+                            <div className='flex gap-4'>
+                                <div>
+                                    <img src={Jacket} alt="User" className='w-[64px] h-[64px] rounded-full' />
+                                </div>
+
+                                <div className='flex flex-col'>
+
+                                <div className='flex items-center gap-4'>
+                                    <p className='text-2xl'>Alex Iwobi</p>
+                                    <Rating
+                                    name="simple-controlled"
+                                    value={value}
+                                    onChange={(event, newValue) => {
+                                        setValue(newValue);
+                                    }}
+                                    />
+                                </div>
+
+                                <div className='py-4'>
+                                    <span className='text-gray-500'>2 March 2021 at 06.30 pm</span>
+                                </div>
+                                
+                                <div className='flex flex-wrap py-4 gap-4'>
+                                    <img src={Jacket} alt="User" className='w-[88px] h-[88px] rounded' />
+                                    <img src={Jacket} alt="User" className='w-[88px] h-[88px] rounded' />
+                                    <img src={Jacket} alt="User" className='w-[88px] h-[88px] rounded' />
+                                    <img src={Jacket} alt="User" className='w-[88px] h-[88px] rounded' />
+                                </div>
+                                <p>Thank you for the article that was made, it really provides insight and knowledge that I didn't know before.</p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className='basis-6/12'>
+                        <div>
+                            <img src={Jacket} alt="User" className='w-[570px] h-[1000px] rounded' />
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
             </div>
 
         </section>

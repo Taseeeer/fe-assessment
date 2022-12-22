@@ -1,10 +1,38 @@
-import { Slider } from "@mui/material";
-import { Box } from "@mui/system";
+import { useEffect, useState } from "react";
 import { BiSearch, BiFilterAlt, BiChevronRight, BiHeart } from "react-icons/bi";
+import { getAllProduct } from "../../api/productServices";
 import FeaturedProducts from "./FeaturedProducts";
 import ShopCard from "./ShopCard";
 
 export default function Main() {
+
+    
+    type ProductDetails = {
+        id: number,
+        description: string,
+        image: string,
+        price: number,
+        title: string
+    }
+
+    const [allProducts, setAllProducts] = useState<ProductDetails[]>([]);
+    const [productsLength, setProductsLength] = useState<number>(6);
+
+    const [searchProduct, setSearchProduct] = useState<string>("");
+    const [ rangeValue, setRangeValue ] = useState<number | string>(2);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const response = await getAllProduct();
+                setAllProducts(response);
+                console.log(response);
+            } catch(e) {
+                console.error(e);
+            }
+        })();
+    }, []);
+
     
     
     function valuetext(value: number) {
@@ -20,7 +48,7 @@ export default function Main() {
                 <div className='basis-5/12 px-8 py-2'>
 
                     <div className='flex py-4 items-center justify-center border bg-white rounded p-0 m-0'>
-                        <input className='text-center' placeholder='Search what you need' />
+                        <input className='text-center outline-0' placeholder='Search what you need' value={searchProduct} onChange={(e) => setSearchProduct(e.target.value)} />
                         <BiSearch className='text-2xl cursor-pointer' />
                     </div>
 
@@ -30,23 +58,20 @@ export default function Main() {
                     </div>
                     
                     <div className='flex justify-center'>
-                        <Box sx={{ width: 330 }}>
-                            <Slider
-                                aria-label="Small steps"
-                                defaultValue={0.00000005}
-                                getAriaValueText={valuetext}
-                                step={2}
-                                marks
-                                min={2}
-                                max={20}
-                                valueLabelDisplay="auto"
-                            />
-                        </Box>
+                        <input 
+                        id="typeinp" 
+                        type="range" 
+                        min="2" max="150" 
+                        value={rangeValue} 
+                        onChange={(e) => setRangeValue(e.target.value)}
+                        step="5"
+                        className='w-[100%] py-4'
+                        />
                     </div>
 
                     <div className='flex items-center justify-between'>
                         <span className=''>Range</span>
-                        <span className=''>$2-$20</span>
+                        <span className=''>$2-$150</span>
                     </div>
 
                     <div className='flex pt-10'>
@@ -85,22 +110,28 @@ export default function Main() {
                         <span className='text-[1.5rem] font-medium'>Featured Products</span>
                     </div>
 
+                    { allProducts && allProducts.slice(0, 4).map(product => (
+                        <FeaturedProducts info={product} />
+                    ))}
 
-                    <FeaturedProducts />
-                    <FeaturedProducts />
-                    <FeaturedProducts />
-                    <FeaturedProducts />
                 </div>
 
                 {/* right */}
                 <div className='bg-gray-100 basis-full px-8 py-2'>
                     <div className='flex flex-wrap gap-4 justify-between'>
-                        <ShopCard />
-                        <ShopCard />
-                        <ShopCard />
-                        <ShopCard />
-                        <ShopCard />
-                        <ShopCard />
+                        { allProducts && allProducts.slice(0,productsLength)
+                        .filter((product) => {
+                            if(searchProduct === "") {
+                                return product;
+                            } else if(product.title.toLocaleLowerCase().includes(searchProduct.toLocaleLowerCase())) {
+                                return product;
+                            } else if(product.price >= rangeValue && product.price <= rangeValue) {
+                                return product;
+                            }
+                        }) 
+                        .map((product) => (
+                            <ShopCard key={product.id} info={product} />
+                        )) }
                     </div>
                 </div>
             </div>
